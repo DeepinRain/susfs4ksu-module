@@ -50,7 +50,7 @@ fi
 if [ -n "$SUSFS_VERSION_RAW" ] && [ "$SUSFS_DECIMAL" -gt 152 ] 2>/dev/null; then
 	ui_print "[-] Kernel is using susfs $SUSFS_VERSION_RAW"
 	ui_print "[-] Downloading susfs $SUSFS_VERSION_RAW from the internet"
-	if download "https://raw.githubusercontent.com/sidex15/susfs4ksu-binaries/main/$SUSFS_DECIMAL/$KERNEL_VERSION/ksu_susfs_arm64" > ${MODPATH}/ksu_susfs_remote ; then
+	if download "https://raw.githubusercontent.com/DeepinRain/susfs4ksu-binaries/main/$SUSFS_DECIMAL/$KERNEL_VERSION/ksu_susfs_arm64" > ${MODPATH}/ksu_susfs_remote ; then
 		# test downloaded binary
 		chmod +x ${MODPATH}/ksu_susfs_remote
 		if ${MODPATH}/ksu_susfs_remote > /dev/null 2>&1 ; then

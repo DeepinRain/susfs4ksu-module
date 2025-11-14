@@ -28,7 +28,7 @@
 * scripts: Implement Custom SUS_MAP for late v1.5.12+
 * scripts: add susfs_reset.sh
 
-### [Binaries](https://github.com/sidex15/susfs4ksu-binaries)
+### [Binaries](https://github.com/DeepinRain/susfs4ksu-binaries)
 * cloud-binaries: add v1.5.11 and v1.5.12 binaries to cloud
 
 ### Note

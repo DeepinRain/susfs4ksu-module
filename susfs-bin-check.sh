@@ -17,7 +17,7 @@ check() {
 }
 
 # Check connectivity first
-base_url="https://raw.githubusercontent.com/sidex15/susfs4ksu-binaries/main"
+base_url="https://raw.githubusercontent.com/DeepinRain/susfs4ksu-binaries/main"
 if ! check "$base_url"; then
   echo "no-conn"
   exit 1
@@ -25,6 +25,6 @@ fi
 
 # Check the hash of susfs binaries
 hash=$(sha256sum ${SUSFS_BIN} | awk '{print $1}')
-cloudhash=$(download https://raw.githubusercontent.com/sidex15/susfs4ksu-binaries/main/$1/$2/ksu_susfs_arm64 | sha256sum | awk '{print $1}')
+cloudhash=$(download https://raw.githubusercontent.com/DeepinRain/susfs4ksu-binaries/main/$1/$2/ksu_susfs_arm64 | sha256sum | awk '{print $1}')
 [ $hash = $cloudhash > /dev/null 2>&1 ] && echo "match" || echo "mismatch"
 #EOL
