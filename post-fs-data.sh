@@ -1,7 +1,6 @@
 #!/bin/sh
 MODDIR=/data/adb/modules/susfs4ksu
 SUSFS_BIN=/data/adb/ksu/bin/ksu_susfs
-SUSFSD=/data/adb/ksu/bin/susfsd
 . ${MODDIR}/utils.sh
 PERSISTENT_DIR=/data/adb/susfs4ksu
 tmpfolder=/data/adb/ksu/susfs4ksu
@@ -16,11 +15,15 @@ kernel_ver=$(head -n 1 "$PERSISTENT_DIR/kernelversion.txt")
 [ -w /mnt/vendor ] && mntfolder=/mnt/vendor/susfs4ksu
 mkdir -p $mntfolder
 
-# use susfsd to check if susfs is supported
-if ${SUSFSD} support | grep -q "Supported"; then
-	touch $tmpfolder/logs/susfs_active
+out="$(${SUSFS_BIN} show variant 2>/dev/null)"
+if [ "$out" = "GKI" ] || [ "$out" = "NON-GKI" ]; then
+    touch "$tmpfolder/logs/susfs_active"
 else
-	dmesg | grep -q "susfs:" > /dev/null && touch $tmpfolder/logs/susfs_active || rm -f $tmpfolder/logs/susfs_active
+    if dmesg | grep -q "susfs:"; then
+        touch "$tmpfolder/logs/susfs_active"
+    else
+        rm -f "$tmpfolder/logs/susfs_active"
+    fi
 fi
 
 # for people that is on legacy with broken dmesg or disabled logging
